@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>unacloud</groupId>
+    <artifactId>unacloud</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>unacloud.agent</groupId>
+  <artifactId>unacloud.agent</artifactId>
+  <name>UnaCloud agent: desktop agent</name>
+  <dependencies>
+  	<dependency>
+  		<groupId>unacloud.utils</groupId>
+  		<artifactId>unacloud.utils</artifactId>
+  		<version>3.0.0-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.turn</groupId>
+  		<artifactId>ttorrent-core</artifactId>
+  		<version>1.6-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>unacloud.commons</groupId>
+  		<artifactId>unacloud.commons</artifactId>
+  		<version>3.0.0-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
+</project>
