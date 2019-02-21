@@ -21,5 +21,7 @@
 		<module>unacloud.utils</module>
 		<module>unacloud.utils.examples</module>
 		<module>unacloud.commons</module>
+		<module>unacloud.server.commons</module>
+		<module>unacloud.server.control</module>
 	</modules>
 </project>
