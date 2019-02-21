@@ -17,6 +17,7 @@
 
 	<modules>
 		<module>unacloud.agent</module>
+		<module>unacloud.updater</module>
 		<module>unacloud.utils</module>
 		<module>unacloud.utils.examples</module>
 		<module>unacloud.commons</module>
