@@ -23,5 +23,6 @@
 		<module>unacloud.commons</module>
 		<module>unacloud.server.commons</module>
 		<module>unacloud.server.control</module>
+		<module>unacloud.web.backend</module>
 	</modules>
 </project>
