@@ -105,7 +105,7 @@ public class PhysicalMachine implements Serializable {
     private String lastMonitoring;
     @ManyToMany(mappedBy = "physicalMachineList", fetch = FetchType.LAZY)
     private List<Platform> platformList;
-    @OneToMany(mappedBy = "executionNodeId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "executionNode", fetch = FetchType.LAZY)
     private List<Execution> executionList;
     @JoinColumn(name = "ip_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)

@@ -92,9 +92,9 @@ public class Execution implements Serializable {
     @JoinColumn(name = "hardware_profile_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private HardwareProfile hardwareProfile;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "executionId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "execution", fetch = FetchType.LAZY)
     private List<NetInterface> netInterfaceList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "executionId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "execution", fetch = FetchType.LAZY)
     private List<ExecutionHistory> executionHistoryList;
 
     public Execution() {

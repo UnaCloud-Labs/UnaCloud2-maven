@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit
+		name="unacloud"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		
+		<class>uniandes.unacloud.web.domain.ExecutionHistory</class>
+		<class>uniandes.unacloud.web.domain.PhysicalMachine</class>
+		<class>uniandes.unacloud.web.domain.User</class>
+		<class>uniandes.unacloud.web.domain.Cluster</class>
+		<class>uniandes.unacloud.web.domain.UserGroup</class>
+		<class>uniandes.unacloud.web.domain.ServerVariable</class>
+		<class>uniandes.unacloud.web.domain.NetInterface</class>
+		<class>uniandes.unacloud.web.domain.DeployedImage</class>
+		<class>uniandes.unacloud.web.domain.HardwareProfile</class>
+		<class>uniandes.unacloud.web.domain.Deployment</class>
+		<class>uniandes.unacloud.web.domain.Image</class>
+		<class>uniandes.unacloud.web.domain.IP</class>
+		<class>uniandes.unacloud.web.domain.Platform</class>
+		<class>uniandes.unacloud.web.domain.UserRestriction</class>
+		<class>uniandes.unacloud.web.domain.Laboratory</class>
+		<class>uniandes.unacloud.web.domain.Execution</class>
+		<class>uniandes.unacloud.web.domain.OperatingSystem</class>
+		<class>uniandes.unacloud.web.domain.IPPool</class>
+		<class>uniandes.unacloud.web.domain.ExecutionState</class>
+		<class>uniandes.unacloud.web.domain.Repository</class>
+
+	</persistence-unit>
+</persistence>

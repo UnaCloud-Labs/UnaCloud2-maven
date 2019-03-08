@@ -31,12 +31,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ip")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ip.findAll", query = "SELECT i FROM Ip i")
-    , @NamedQuery(name = "Ip.findById", query = "SELECT i FROM Ip i WHERE i.id = :id")
-    , @NamedQuery(name = "Ip.findByVersion", query = "SELECT i FROM Ip i WHERE i.version = :version")
-    , @NamedQuery(name = "Ip.findByIp", query = "SELECT i FROM Ip i WHERE i.ip = :ip")
-    , @NamedQuery(name = "Ip.findByClass1", query = "SELECT i FROM Ip i WHERE i.class1 = :class1")
-    , @NamedQuery(name = "Ip.findByState", query = "SELECT i FROM Ip i WHERE i.state = :state")})
+    @NamedQuery(name = "Ip.findAll", query = "SELECT i FROM IP i")
+    , @NamedQuery(name = "Ip.findById", query = "SELECT i FROM IP i WHERE i.id = :id")
+    , @NamedQuery(name = "Ip.findByVersion", query = "SELECT i FROM IP i WHERE i.version = :version")
+    , @NamedQuery(name = "Ip.findByIp", query = "SELECT i FROM IP i WHERE i.ip = :ip")
+    , @NamedQuery(name = "Ip.findByClass1", query = "SELECT i FROM IP i WHERE i.class1 = :class1")
+    , @NamedQuery(name = "Ip.findByState", query = "SELECT i FROM IP i WHERE i.state = :state")})
 public class IP implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,9 +59,9 @@ public class IP implements Serializable {
     @JoinColumn(name = "ip_pool_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private IPPool ipPool;
-    @OneToMany(mappedBy = "ipId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ip", fetch = FetchType.LAZY)
     private List<NetInterface> netInterfaceList;
-    @OneToMany(mappedBy = "ipId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ip", fetch = FetchType.LAZY)
     private List<PhysicalMachine> physicalMachineList;
 
     public IP() {

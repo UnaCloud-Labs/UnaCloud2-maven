@@ -61,9 +61,9 @@ public class Laboratory implements Serializable {
     @Basic(optional = false)
     @Column(name = "network_quality")
     private String networkQuality;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratoryId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory", fetch = FetchType.LAZY)
     private List<IPPool> ippoolList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratoryId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "laboratory", fetch = FetchType.LAZY)
     private List<PhysicalMachine> physicalMachineList;
 
     public Laboratory() {

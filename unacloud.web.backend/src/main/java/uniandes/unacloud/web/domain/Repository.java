@@ -56,7 +56,7 @@ public class Repository implements Serializable {
     @Basic(optional = false)
     @Column(name = "path")
     private String path;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repositoryId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repository", fetch = FetchType.LAZY)
     private List<Image> imageList;
 
     public Repository() {

@@ -105,7 +105,7 @@ public class Image implements Serializable {
     @JoinColumn(name = "operating_system_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private OperatingSystem operatingSystem;
-    @OneToMany(mappedBy = "imageId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
     private List<DeployedImage> deployedImageList;
 
     public Image() {

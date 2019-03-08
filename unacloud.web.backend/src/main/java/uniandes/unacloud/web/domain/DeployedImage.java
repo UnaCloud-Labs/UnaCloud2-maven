@@ -50,7 +50,7 @@ public class DeployedImage implements Serializable {
     @Basic(optional = false)
     @Column(name = "high_avaliavility")
     private boolean highAvaliavility;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deployImageId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deployedImage", fetch = FetchType.LAZY)
     private List<Execution> executionList;
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)

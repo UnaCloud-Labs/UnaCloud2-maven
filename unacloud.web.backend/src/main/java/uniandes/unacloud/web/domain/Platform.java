@@ -71,7 +71,7 @@ public class Platform implements Serializable {
         @JoinColumn(name = "physical_machine_platforms_id", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<PhysicalMachine> physicalMachineList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platformId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform", fetch = FetchType.LAZY)
     private List<Image> imageList;
 
     public Platform() {

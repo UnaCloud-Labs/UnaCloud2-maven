@@ -92,11 +92,11 @@ public class User implements Serializable {
         @JoinColumn(name = "user_group_users_id", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<UserGroup> userGroupList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Cluster> clusterList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Image> imageList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Deployment> deploymentList;
 
     public User() {

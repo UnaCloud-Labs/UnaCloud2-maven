@@ -62,7 +62,7 @@ public class Deployment implements Serializable {
     @Basic(optional = false)
     @Column(name = "status")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deploymentId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deployment", fetch = FetchType.LAZY)
     private List<DeployedImage> deployedImageList;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

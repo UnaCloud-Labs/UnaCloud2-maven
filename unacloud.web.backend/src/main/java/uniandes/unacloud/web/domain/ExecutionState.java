@@ -57,7 +57,7 @@ public class ExecutionState implements Serializable {
     @Basic(optional = false)
     @Column(name = "state")
     private String state;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stateId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "state", fetch = FetchType.LAZY)
     private List<Execution> executionList;
     
     @OneToMany(mappedBy = "nextControlId", fetch = FetchType.LAZY)
@@ -65,18 +65,20 @@ public class ExecutionState implements Serializable {
     @JoinColumn(name = "next_control_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private ExecutionState nextControlId;
+    
     @OneToMany(mappedBy = "nextId", fetch = FetchType.LAZY)
     private List<ExecutionState> executionStateList1;
     @JoinColumn(name = "next_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private ExecutionState nextId;
+   
     @OneToMany(mappedBy = "nextRequestedId", fetch = FetchType.LAZY)
     private List<ExecutionState> executionStateList2;
     @JoinColumn(name = "next_requested_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private ExecutionState nextRequestedId;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stateId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "state", fetch = FetchType.LAZY)
     private List<ExecutionHistory> executionHistoryList;
 
     public ExecutionState() {

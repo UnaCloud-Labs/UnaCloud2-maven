@@ -31,12 +31,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "ippool")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ippool.findAll", query = "SELECT i FROM Ippool i")
-    , @NamedQuery(name = "Ippool.findById", query = "SELECT i FROM Ippool i WHERE i.id = :id")
-    , @NamedQuery(name = "Ippool.findByVersion", query = "SELECT i FROM Ippool i WHERE i.version = :version")
-    , @NamedQuery(name = "Ippool.findByGateway", query = "SELECT i FROM Ippool i WHERE i.gateway = :gateway")
-    , @NamedQuery(name = "Ippool.findByMask", query = "SELECT i FROM Ippool i WHERE i.mask = :mask")
-    , @NamedQuery(name = "Ippool.findByPrivateNet", query = "SELECT i FROM Ippool i WHERE i.privateNet = :privateNet")})
+    @NamedQuery(name = "Ippool.findAll", query = "SELECT i FROM IPPool i")
+    , @NamedQuery(name = "Ippool.findById", query = "SELECT i FROM IPPool i WHERE i.id = :id")
+    , @NamedQuery(name = "Ippool.findByVersion", query = "SELECT i FROM IPPool i WHERE i.version = :version")
+    , @NamedQuery(name = "Ippool.findByGateway", query = "SELECT i FROM IPPool i WHERE i.gateway = :gateway")
+    , @NamedQuery(name = "Ippool.findByMask", query = "SELECT i FROM IPPool i WHERE i.mask = :mask")
+    , @NamedQuery(name = "Ippool.findByPrivateNet", query = "SELECT i FROM IPPool i WHERE i.privateNet = :privateNet")})
 public class IPPool implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,7 +57,7 @@ public class IPPool implements Serializable {
     @Basic(optional = false)
     @Column(name = "private_net")
     private boolean privateNet;
-    @OneToMany(mappedBy = "ipPoolId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ipPool", fetch = FetchType.LAZY)
     private List<IP> ipList;
     @JoinColumn(name = "laboratory_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

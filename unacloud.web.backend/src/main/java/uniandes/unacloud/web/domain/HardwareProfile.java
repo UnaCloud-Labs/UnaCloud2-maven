@@ -56,7 +56,7 @@ public class HardwareProfile implements Serializable {
     @Basic(optional = false)
     @Column(name = "ram")
     private int ram;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hardwareProfileId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hardwareProfile", fetch = FetchType.LAZY)
     private List<Execution> executionList;
 
     public HardwareProfile() {

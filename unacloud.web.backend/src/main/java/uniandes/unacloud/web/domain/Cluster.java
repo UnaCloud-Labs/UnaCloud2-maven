@@ -63,7 +63,7 @@ public class Cluster implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
-    @OneToMany(mappedBy = "clusterId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cluster", fetch = FetchType.LAZY)
     private List<Deployment> deploymentList;
 
     public Cluster() {

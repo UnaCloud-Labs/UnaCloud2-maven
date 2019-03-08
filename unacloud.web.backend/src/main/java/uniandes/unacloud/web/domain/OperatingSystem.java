@@ -52,9 +52,9 @@ public class OperatingSystem implements Serializable {
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "operatingSystemId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "operatingSystem", fetch = FetchType.LAZY)
     private List<Image> imageList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "operatingSystemId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "operatingSystem", fetch = FetchType.LAZY)
     private List<PhysicalMachine> physicalMachineList;
 
     public OperatingSystem() {
