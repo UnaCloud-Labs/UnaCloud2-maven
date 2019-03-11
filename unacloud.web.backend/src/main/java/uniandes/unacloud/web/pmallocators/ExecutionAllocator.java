@@ -63,9 +63,11 @@ public abstract class ExecutionAllocator{
 	 */
 	protected boolean fitEXonPM(Execution vme, PhysicalMachine pm, PhysicalMachineAllocationDescription pmad){
 
-		System.out.println(sf.format(new Date())+"\t Requires: " + ( (Image) ( (DeployedImage) vme.getDeployedImage() ).getImage()).getPlatform().getName());
-		if (!isSupportedPlatform( ( (Image) ( (DeployedImage ) vme.getDeployedImage() ).getImage() ).getPlatform(), pm))
-			return false;
+		// TODO: remove comments to platform validation		
+//		System.out.println(sf.format(new Date())+"\t Requires: " + ( (Image) ( (DeployedImage) vme.getDeployedImage() ).getImage()).getPlatform().getName());
+//		if (!isSupportedPlatform( ( (Image) ( (DeployedImage ) vme.getDeployedImage() ).getImage() ).getPlatform(), pm))
+//			return false;
+		
 		System.out.println("Required: exe cores" + vme.getHardwareProfile().getCores() + " exe ram" +  vme.getHardwareProfile().getRam() + " pm cores" + pm.getCores() + "pm ram" + pm.getRam());	
 		System.out.println("Used "+pmad);
 		if (pmad == null && vme.getHardwareProfile().getCores() <= pm.getCores() && vme.getHardwareProfile().getRam() <= pm.getRam())
@@ -80,17 +82,21 @@ public abstract class ExecutionAllocator{
 	 * @return true if there is a IP available for physical machines, false in case or not
 	 */
 	private boolean isThereEnoughIps(PhysicalMachine pm){
-		Integer ips = ipsNeeded.get(pm.getLaboratory().getDatabaseId());
-		if (ips == null)
-			ipsNeeded.put(pm.getLaboratory().getDatabaseId(), 1);
-		else ipsNeeded.put(pm.getLaboratory().getDatabaseId(), ips + 1);
-		System.out.println(sf.format(new Date())+"\tA "+(ipsNeeded.get(pm.getLaboratory().getDatabaseId())));
-		System.out.println("B "+( pm.getLaboratory().getAvailableIps().size()));
-		System.out.println("Check ips "+(ipsNeeded.get(pm.getLaboratory().getDatabaseId()) > pm.getLaboratory().getAvailableIps().size()));
-		if (ipsNeeded.get(pm.getLaboratory().getDatabaseId()) > pm.getLaboratory().getAvailableIps().size())
-			return false;
-		else 
-			return true;
+		
+		// TODO: remove comments to IP validation
+//		Integer ips = ipsNeeded.get(pm.getLaboratory().getDatabaseId());
+//		if (ips == null)
+//			ipsNeeded.put(pm.getLaboratory().getDatabaseId(), 1);
+//		else ipsNeeded.put(pm.getLaboratory().getDatabaseId(), ips + 1);
+//		System.out.println(sf.format(new Date())+"\tA "+(ipsNeeded.get(pm.getLaboratory().getDatabaseId())));
+//		System.out.println("B "+( pm.getLaboratory().getAvailableIps().size()));
+//		System.out.println("Check ips "+(ipsNeeded.get(pm.getLaboratory().getDatabaseId()) > pm.getLaboratory().getAvailableIps().size()));
+//		if (ipsNeeded.get(pm.getLaboratory().getDatabaseId()) > pm.getLaboratory().getAvailableIps().size())
+//			return false;
+//		else 
+//			return true;
+
+		return true;
 	}
 	/**
 	 * Responsible to validate if a platform is supported in physical machine

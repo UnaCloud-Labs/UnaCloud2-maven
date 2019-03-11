@@ -87,7 +87,7 @@ public class UnaCloudConnection {
 			List<Laboratory> labs = labsQuery.getResultList();
 
 			for (Laboratory lab : labs) {
-				System.out.println("Querying machines from " + lab.getName());
+				System.err.println("Querying machines from " + lab.getName());
 				machines.addAll(lab.getPhysicalMachineList());
 			}
 
