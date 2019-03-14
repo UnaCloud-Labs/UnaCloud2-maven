@@ -53,6 +53,10 @@ public class Allocate {
 		@Parameter(names = {"-o", "--output"},
 				description="Name of the file where the results will be stored")
 		String outputfilename = "";
+	
+		@Parameter(names = {"-c", "--case"},
+				description="comma separated values for the number of instances, e.g., \"1,1,1,3\"" )
+		List<Integer> numbers;
 	}
 	
 	public static void main(String[] args) {
@@ -81,8 +85,34 @@ public class Allocate {
 		}
 		
 		// check the number of requested machines
-		if (options.numberOfSmall + options.numberOfMedium + options.numberOfLarge + options.numberOfXlarge == 0) {
-			System.err.println("Error: number of requested machines is zero.");
+		if ((options.numbers == null  || options.numbers.size() == 0 )) {
+			
+			// if a test case was not provided, the sum of individual numbers must be greather than zero
+			if (options.numberOfSmall + options.numberOfMedium + options.numberOfLarge + options.numberOfXlarge <= 0) {
+				System.err.println("Error: number of requested machines is zero.");
+				System.exit(-1);
+			}
+		
+		} else {
+		
+			// if a test case is provided, the sum of individual numbers must be zero
+			if (options.numberOfSmall + options.numberOfMedium + options.numberOfLarge + options.numberOfXlarge > 0) {
+				System.err.println("Error: providing number of requested machines using both -case and individual numbers.");
+				System.exit(-1);
+			}
+			
+			// translate numbers to the values
+			if (options.numbers.size() > 0) {
+				if (options.numbers.size() < 4) {
+					System.err.println("Error: providing a case with less than 4 numbers.");
+					System.exit(-1);				
+				}
+				options.numberOfSmall  = options.numbers.get(0);
+				options.numberOfMedium = options.numbers.get(0);
+				options.numberOfLarge  = options.numbers.get(0);
+				options.numberOfXlarge = options.numbers.get(0);
+			}
+			
 		}
 		
 		// Connect to UnaCloud
