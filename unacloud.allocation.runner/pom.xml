@@ -27,6 +27,9 @@
 
 	<!-- Create a single-jar executable -->
 	<build>
+		
+		<finalName>allocation</finalName>
+	
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
