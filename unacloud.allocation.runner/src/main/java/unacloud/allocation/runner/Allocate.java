@@ -120,9 +120,9 @@ public class Allocate {
 					System.exit(-1);				
 				}
 				options.numberOfSmall  = testCase.numbers.get(0);
-				options.numberOfMedium = testCase.numbers.get(0);
-				options.numberOfLarge  = testCase.numbers.get(0);
-				options.numberOfXlarge = testCase.numbers.get(0);
+				options.numberOfMedium = testCase.numbers.get(1);
+				options.numberOfLarge  = testCase.numbers.get(2);
+				options.numberOfXlarge = testCase.numbers.get(3);
 			}
 
 		} else {
@@ -151,9 +151,9 @@ public class Allocate {
 						System.exit(-1);				
 					}
 					options.numberOfSmall  = options.numbers.get(0);
-					options.numberOfMedium = options.numbers.get(0);
-					options.numberOfLarge  = options.numbers.get(0);
-					options.numberOfXlarge = options.numbers.get(0);
+					options.numberOfMedium = options.numbers.get(1);
+					options.numberOfLarge  = options.numbers.get(2);
+					options.numberOfXlarge = options.numbers.get(3);
 				}
 		
 			}				
