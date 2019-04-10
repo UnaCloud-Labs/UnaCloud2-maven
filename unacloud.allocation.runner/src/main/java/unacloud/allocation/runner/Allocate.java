@@ -56,18 +56,209 @@ public class Allocate {
 		String outputfilename = "";
 	
 		@Parameter(names = {"-c", "--case"},
-				description="comma separated values for the number of instances, e.g., \"1,1,1,3\"" )
+				description="Comma separated values for the number of instances, e.g., \"1,1,1,3\"" )
 		List<Integer> numbers;
 		
 		@Parameter(names = {"-i", "--useinput"},
-				description="use test case description in the standard input")
+				description="Use test case description in the standard input")
 		boolean useInput = false;
+
+		@Parameter(names = {"-g", "--groupPerSize"},
+				description="Request all the machines with the same size at the same time")
+		boolean groupPerSize = false;
 	}
 	
 	private static class TestCaseValues {
 		@Parameter(description="comma separated values for the number of instances, e.g., \"1,1,1,3\"" )
 		List<Integer> numbers;
 	}
+	
+	public static List<Execution> createExecutionList (int numberOfSmall, int numberOfMedium, int numberOfLarge, int numberOfXlarge) {
+		
+		// Create the Hardware Profiles
+		HardwareProfile smallProfile = new HardwareProfile();
+		smallProfile.setId(1L);
+		smallProfile.setCores(1);
+		smallProfile.setRam(1);
+		
+		HardwareProfile mediumProfile = new HardwareProfile();
+		mediumProfile.setId(2L);
+		mediumProfile.setCores(2);
+		mediumProfile.setRam(2);
+
+		HardwareProfile largeProfile = new HardwareProfile();
+		largeProfile.setId(3L);
+		largeProfile.setCores(3);
+		largeProfile.setRam(4);
+
+		HardwareProfile xlargeProfile = new HardwareProfile();
+		xlargeProfile.setId(4L);
+		xlargeProfile.setCores(1);
+		xlargeProfile.setRam(8);
+
+		// Create the ExecutionState to use
+		ExecutionState execState = new ExecutionState();
+		execState.setState("REQUESTED");
+		
+		// Create the DeployedImage to use
+		DeployedImage depImage = new DeployedImage();
+		depImage.setHighAvaliavility(false);
+		depImage.setExecutionList(new ArrayList<Execution>());
+		
+		// create the list for executions
+		List<Execution> executionList = new ArrayList<Execution>();
+		
+		// add all the executions
+		while (numberOfSmall > 0 || numberOfMedium > 0 || numberOfLarge > 0 || numberOfXlarge > 0 ) {
+			
+			int number = (int) (Math.random() * 4);
+
+			switch(number) {
+			case 0:
+				if (numberOfSmall > 0) {
+					Execution execution = new Execution();
+					execution.setDeployedImage(depImage);
+					execution.setDuration(600);
+					execution.setStateId(execState);
+					execution.setName("test-small-");
+					execution.setHardwareProfile(smallProfile);
+					depImage.getExecutionList().add(execution);
+					executionList.add(execution);
+					numberOfSmall--;					
+				}
+				break;
+			case 1:
+				if (numberOfMedium > 0) {
+					Execution execution = new Execution();
+					execution.setDeployedImage(depImage);
+					execution.setDuration(600);
+					execution.setStateId(execState);
+					execution.setName("test-medium-");
+					execution.setHardwareProfile(mediumProfile);
+					depImage.getExecutionList().add(execution);
+					executionList.add(execution);
+					numberOfMedium--;
+				}
+				break;
+			case 2:
+				if (numberOfLarge > 0) {
+					Execution execution = new Execution();
+					execution.setDeployedImage(depImage);
+					execution.setDuration(600);
+					execution.setStateId(execState);
+					execution.setName("test-large-");
+					execution.setHardwareProfile(largeProfile);
+					depImage.getExecutionList().add(execution);
+					executionList.add(execution);
+					numberOfLarge--;
+				}
+				break;
+			case 3:
+				if (numberOfXlarge > 0) {
+					Execution execution = new Execution();
+					execution.setDeployedImage(depImage);
+					execution.setDuration(600);
+					execution.setStateId(execState);
+					execution.setName("test-xlarge-");
+					execution.setHardwareProfile(xlargeProfile);
+					depImage.getExecutionList().add(execution);
+					executionList.add(execution);
+					numberOfXlarge--;
+				}
+			}		
+			
+		}
+
+		return executionList;
+	}
+
+	public static List<Execution> createGroupedExecutionList (int numberOfSmall, int numberOfMedium, int numberOfLarge, int numberOfXlarge) {
+		
+		// Create the Hardware Profiles
+		HardwareProfile smallProfile = new HardwareProfile();
+		smallProfile.setId(1L);
+		smallProfile.setCores(1);
+		smallProfile.setRam(1);
+		
+		HardwareProfile mediumProfile = new HardwareProfile();
+		mediumProfile.setId(2L);
+		mediumProfile.setCores(2);
+		mediumProfile.setRam(2);
+
+		HardwareProfile largeProfile = new HardwareProfile();
+		largeProfile.setId(3L);
+		largeProfile.setCores(3);
+		largeProfile.setRam(4);
+
+		HardwareProfile xlargeProfile = new HardwareProfile();
+		xlargeProfile.setId(4L);
+		xlargeProfile.setCores(1);
+		xlargeProfile.setRam(8);
+
+		// Create the ExecutionState to use
+		ExecutionState execState = new ExecutionState();
+		execState.setState("REQUESTED");
+		
+		// Create the DeployedImage to use
+		DeployedImage depImage = new DeployedImage();
+		depImage.setHighAvaliavility(false);
+		depImage.setExecutionList(new ArrayList<Execution>());
+		
+		// create the list for executions
+		List<Execution> executionList = new ArrayList<Execution>();
+
+		// add the executions
+		for (int i=0; i<numberOfSmall; i++) {
+			Execution execution = new Execution();
+			execution.setDeployedImage(depImage);
+			execution.setName("test-small-");
+			execution.setHardwareProfile(smallProfile);
+			execution.setDuration(600);
+			execution.setStateId(execState);
+			
+			depImage.getExecutionList().add(execution);
+			executionList.add(execution);
+		}
+		
+		for (int i=0; i<numberOfMedium; i++) {
+			Execution execution = new Execution();
+			execution.setDeployedImage(depImage);
+			execution.setName("test-medium-");
+			execution.setHardwareProfile(mediumProfile);
+			execution.setDuration(600);
+			execution.setStateId(execState);
+			
+			depImage.getExecutionList().add(execution);
+			executionList.add(execution);
+		}
+
+		for (int i=0; i<numberOfLarge; i++) {
+			Execution execution = new Execution();
+			execution.setDeployedImage(depImage);
+			execution.setName("test-large-");
+			execution.setHardwareProfile(largeProfile);
+			execution.setDuration(600);
+			execution.setStateId(execState);
+			
+			depImage.getExecutionList().add(execution);
+			executionList.add(execution);
+		}
+
+		for (int i=0; i<numberOfXlarge; i++) {
+			Execution execution = new Execution();
+			execution.setDeployedImage(depImage);
+			execution.setName("test-xlarge-");
+			execution.setHardwareProfile(xlargeProfile);
+			execution.setDuration(600);
+			execution.setStateId(execState);
+			
+			depImage.getExecutionList().add(execution);
+			executionList.add(execution);
+		}
+		
+		return executionList;
+	}
+
 	
 	public static void main(String[] args) {
 		
@@ -188,88 +379,12 @@ public class Allocate {
 		// Process
 		// =======
 		
-		// Create the Hardware Profiles
-		HardwareProfile smallProfile = new HardwareProfile();
-		smallProfile.setId(1L);
-		smallProfile.setCores(1);
-		smallProfile.setRam(1);
-		
-		HardwareProfile mediumProfile = new HardwareProfile();
-		mediumProfile.setId(2L);
-		mediumProfile.setCores(2);
-		mediumProfile.setRam(2);
-
-		HardwareProfile largeProfile = new HardwareProfile();
-		largeProfile.setId(3L);
-		largeProfile.setCores(3);
-		largeProfile.setRam(4);
-
-		HardwareProfile xlargeProfile = new HardwareProfile();
-		xlargeProfile.setId(4L);
-		xlargeProfile.setCores(1);
-		xlargeProfile.setRam(8);
-
-		// Create the ExecutionState to use
-		ExecutionState execState = new ExecutionState();
-		execState.setState("REQUESTED");
-		
-		// Create the DeployedImage to use
-		DeployedImage depImage = new DeployedImage();
-		depImage.setHighAvaliavility(false);
-		depImage.setExecutionList(new ArrayList<Execution>());
-		
-		// create the list for executions
-		List<Execution> executionList = new ArrayList<Execution>();
-		
-		// add the executions
-		for (int i=0; i<options.numberOfSmall; i++) {
-			Execution execution = new Execution();
-			execution.setDeployedImage(depImage);
-			execution.setName("test-small-");
-			execution.setHardwareProfile(smallProfile);
-			execution.setDuration(600);
-			execution.setStateId(execState);
+		List<Execution> executionList;
+		if (options.groupPerSize) 
+			executionList = createGroupedExecutionList(options.numberOfSmall, options.numberOfMedium, options.numberOfLarge, options.numberOfXlarge);
+		else
+			executionList = createExecutionList(options.numberOfSmall, options.numberOfMedium, options.numberOfLarge, options.numberOfXlarge);
 			
-			depImage.getExecutionList().add(execution);
-			executionList.add(execution);
-		}
-		
-		for (int i=0; i<options.numberOfMedium; i++) {
-			Execution execution = new Execution();
-			execution.setDeployedImage(depImage);
-			execution.setName("test-medium-");
-			execution.setHardwareProfile(mediumProfile);
-			execution.setDuration(600);
-			execution.setStateId(execState);
-			
-			depImage.getExecutionList().add(execution);
-			executionList.add(execution);
-		}
-
-		for (int i=0; i<options.numberOfLarge; i++) {
-			Execution execution = new Execution();
-			execution.setDeployedImage(depImage);
-			execution.setName("test-large-");
-			execution.setHardwareProfile(largeProfile);
-			execution.setDuration(600);
-			execution.setStateId(execState);
-			
-			depImage.getExecutionList().add(execution);
-			executionList.add(execution);
-		}
-
-		for (int i=0; i<options.numberOfXlarge; i++) {
-			Execution execution = new Execution();
-			execution.setDeployedImage(depImage);
-			execution.setName("test-xlarge-");
-			execution.setHardwareProfile(xlargeProfile);
-			execution.setDuration(600);
-			execution.setStateId(execState);
-			
-			depImage.getExecutionList().add(execution);
-			executionList.add(execution);
-		}
-		
 		// create a list with machine allocation descriptions
 		Map<Long, PhysicalMachineAllocationDescription> physicalMachineDescriptions = new HashMap<Long, PhysicalMachineAllocationDescription>();
 		
